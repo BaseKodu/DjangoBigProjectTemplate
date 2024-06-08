@@ -1,16 +1,35 @@
-run-server:
-	poetry run python manage.py runserver
+.PHONY: runserver
+runserver:
+	poetry run python -m dbpt.manage runserver
 
+.PHONY: migrate
 migrate:
-	poetry run python manage.py migrate
+	poetry run python -m dbpt.manage migrate
 
+.PHONY: makemigrations
 makemigrations:
-	poetry run python manage.py makemigrations
+	poetry run python -m dbpt.manage makemigrations
 
+.PHONY: shell
 shell:
-	poetry run python manage.py shell
+	poetry shell
 
+.PHONY: test
 test:
-	poetry run python manage.py test
+	poetry run python -m dbpt.manage test
 
-# Path: Makefile
+.PHONY: install
+install:
+	poetry install
+
+.PHONY: add
+add:
+	poetry add $(package)
+
+.PHONY: superuser
+superuser:
+	poetry run python -m dbpt.manage createsuperuser
+
+.PHONY: update
+update: install migrate ;
+
