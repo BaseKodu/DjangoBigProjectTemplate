@@ -3,4 +3,4 @@
 '''
 
 
-IN_DOCKER = False
+IN_DOCKER = False # by default, we are not in a Docker container
